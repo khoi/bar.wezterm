@@ -35,7 +35,7 @@ M.options = {
     username = {
       enabled = true,
       icon = wez.nerdfonts.fa_user,
-      color = 6,
+      color = 8,
     },
     hostname = {
       enabled = true,
@@ -45,12 +45,12 @@ M.options = {
     clock = {
       enabled = true,
       icon = wez.nerdfonts.md_calendar_clock,
-      color = 5,
+      color = 8,
     },
     cwd = {
       enabled = true,
       icon = wez.nerdfonts.oct_file_directory,
-      color = 7,
+      color = 8,
     },
     spotify = {
       enabled = false,
@@ -62,12 +62,12 @@ M.options = {
     cpu = {
       enabled = true,
       icon = wez.nerdfonts.md_chip,
-      color = 5,
+      color = 8,
     },
     memory = {
       enabled = true,
       icon = wez.nerdfonts.md_memory,
-      color = 3,
+      color = 8,
     },
   },
 }
