@@ -6,7 +6,7 @@ local M = {}
 local last_update = 0
 local stored_cpu = ""
 
--- Get CPU usage percentage
+-- Get CPU load average
 local function get_cpu_usage()
   if utilities._wait(5, last_update) then
     return stored_cpu
@@ -17,13 +17,13 @@ local function get_cpu_usage()
     success, stdout, stderr = wez.run_child_process {
       "sh",
       "-c",
-      "top -l 1 | grep -E '^CPU' | awk '{print $3 + $5}' | cut -d'.' -f1",
+      "sysctl -n vm.loadavg | awk '{print $2,$3,$4}'"
     }
   else
     success, stdout, stderr = wez.run_child_process {
       "sh",
       "-c",
-      "top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4 + $6 + $8 + $10}'"
+      "cat /proc/loadavg | awk '{print $1,$2,$3}'"
     }
   end
 
@@ -32,7 +32,7 @@ local function get_cpu_usage()
     return ""
   end
 
-  stored_cpu = utilities._trim(stdout) .. "%"
+  stored_cpu = utilities._trim(stdout)
   last_update = os.time()
   return stored_cpu
 end
