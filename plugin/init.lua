@@ -188,6 +188,13 @@ wez.on("update-status", function(window, pane)
       end,
     },
     {
+      name = "hostname",
+      func = function()
+        return wez.hostname()
+      end,
+    },
+
+    {
       name = "clock",
       func = function()
         return wez.time.now():format "%H:%M"
@@ -197,6 +204,12 @@ wez.on("update-status", function(window, pane)
       name = "cwd",
       func = function()
         return paths.get_cwd(pane, true)
+      end,
+    },
+    {
+      name = "battery",
+      func = function()
+        return require("bar.battery").get_battery_status()
       end,
     },
   }

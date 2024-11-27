@@ -34,6 +34,10 @@ local M = {}
 ---@field clock option.module
 ---@field cwd option.module
 ---@field spotify option.spotify
+---@field cpu option.module
+---@field memory option.module
+---@field battery option.module
+---@field ip option.module
 
 ---@class bar.options
 ---@field position "top" | "bottom"
@@ -83,6 +87,11 @@ M.options = {
       icon = wez.nerdfonts.cod_server,
       color = 8,
     },
+    hostname = {
+      enabled = true,
+      icon = wez.nerdfonts.cod_server,
+      color = 8,
+    },
     clock = {
       enabled = true,
       icon = wez.nerdfonts.md_calendar_clock,
@@ -108,6 +117,11 @@ M.options = {
     memory = {
       enabled = true,
       icon = wez.nerdfonts.md_memory,
+      color = 8,
+    },
+    battery = {
+      enabled = true,
+      icon = wez.nerdfonts.md_battery,
       color = 8,
     },
   },
