@@ -8,8 +8,8 @@ M.options = {
   max_width = 32,
   separator = {
     space = 1,
-    left_icon = wez.nerdfonts.fa_long_arrow_right,
-    right_icon = wez.nerdfonts.fa_long_arrow_left,
+    left_icon = wez.nerdfonts.cod_chevron_right,
+    right_icon = wez.nerdfonts.cod_chevron_left,
     field_icon = wez.nerdfonts.indent_line,
   },
   modules = {
