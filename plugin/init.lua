@@ -170,12 +170,6 @@ wez.on("update-status", function(window, pane)
       end,
     },
     {
-      name = "memory",
-      func = function()
-        return require("bar.memory").get_memory_usage()
-      end,
-    },
-    {
       name = "username",
       func = function()
         return user.username

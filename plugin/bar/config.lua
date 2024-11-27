@@ -114,11 +114,6 @@ M.options = {
       icon = wez.nerdfonts.md_chip,
       color = 8,
     },
-    memory = {
-      enabled = true,
-      icon = wez.nerdfonts.md_memory,
-      color = 8,
-    },
     battery = {
       enabled = true,
       icon = wez.nerdfonts.md_battery,
