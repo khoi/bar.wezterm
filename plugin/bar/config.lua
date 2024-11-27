@@ -78,7 +78,7 @@ M.options = {
       color = 7,
     },
     username = {
-      enabled = true,
+      enabled = false,
       icon = wez.nerdfonts.fa_user,
       color = 8,
     },
@@ -88,7 +88,7 @@ M.options = {
       color = 8,
     },
     hostname = {
-      enabled = true,
+      enabled = false,
       icon = wez.nerdfonts.cod_server,
       color = 8,
     },
@@ -98,7 +98,7 @@ M.options = {
       color = 8,
     },
     cwd = {
-      enabled = true,
+      enabled = false,
       icon = wez.nerdfonts.oct_file_directory,
       color = 8,
     },
@@ -115,7 +115,7 @@ M.options = {
       color = 8,
     },
     memory = {
-      enabled = false,
+      enabled = true,
       icon = wez.nerdfonts.md_memory,
       color = 8,
     },
