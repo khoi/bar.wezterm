@@ -59,6 +59,11 @@ M.options = {
       max_width = 64,
       throttle = 15,
     },
+    cpu = {
+      enabled = true,
+      icon = wez.nerdfonts.md_chip,
+      color = 1,
+    },
   },
 }
 

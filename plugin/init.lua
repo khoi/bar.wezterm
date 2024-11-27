@@ -35,6 +35,7 @@ local tabs = require "bar.tabs"
 local user = require "bar.user"
 local spotify = require "bar.spotify"
 local paths = require "bar.paths"
+local cpu = require "bar.cpu"
 
 -- conforming to https://github.com/wez/wezterm/commit/e4ae8a844d8feaa43e1de34c5cc8b4f07ce525dd
 M.apply_to_config = function(c, opts)
@@ -150,6 +151,12 @@ wez.on("update-status", function(window, pane)
       name = "spotify",
       func = function()
         return spotify.get_currently_playing(options.modules.spotify.max_width, options.modules.spotify.throttle)
+      end,
+    },
+    {
+      name = "cpu",
+      func = function()
+        return cpu.get_cpu_usage()
       end,
     },
     {
