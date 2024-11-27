@@ -62,7 +62,7 @@ M.options = {
     cpu = {
       enabled = true,
       icon = wez.nerdfonts.md_chip,
-      color = 1,
+      color = 5,
     },
   },
 }
