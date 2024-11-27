@@ -17,13 +17,13 @@ local function get_cpu_usage()
     success, stdout, stderr = wez.run_child_process {
       "sh",
       "-c",
-      "top -l 1 | grep -E '^CPU' | awk '{print $3}' | cut -d'%' -f1",
+      "top -l 1 | grep -E '^CPU' | awk '{print $3 + $5}' | cut -d'.' -f1",
     }
   else
     success, stdout, stderr = wez.run_child_process {
       "sh",
       "-c",
-      "top -bn1 | grep 'Cpu(s)' | awk '{print $2}'"
+      "top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4 + $6 + $8 + $10}'"
     }
   end
 
