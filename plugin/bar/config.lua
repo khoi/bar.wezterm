@@ -115,7 +115,7 @@ M.options = {
       color = 8,
     },
     memory = {
-      enabled = true,
+      enabled = false,
       icon = wez.nerdfonts.md_memory,
       color = 8,
     },
