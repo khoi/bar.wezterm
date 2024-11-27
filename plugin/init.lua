@@ -170,12 +170,6 @@ wez.on("update-status", function(window, pane)
       end,
     },
     {
-      name = "gpu",
-      func = function()
-        return require("bar.gpu").get_gpu_usage()
-      end,
-    },
-    {
       name = "memory",
       func = function()
         return require("bar.memory").get_memory_usage()
