@@ -1,18 +1,22 @@
 local wez = require "wezterm"
 
+---@class bar.wezterm
 local M = {}
 local options = {}
 
 local separator = package.config:sub(1, 1) == "\\" and "\\" or "/"
 local plugin_dir = wez.plugin.list()[1].plugin_dir:gsub(separator .. "[^" .. separator .. "]*$", "")
 
---- Checks if the plugin directory exists
+---checks if the plugin directory exists
+---@param path string
+---@return boolean
 local function directory_exists(path)
   local success, result = pcall(wez.read_dir, plugin_dir .. path)
   return success and result
 end
 
---- Returns the name of the package, used when requiring modules
+---returns the name of the package, used when requiring modules
+---@return string
 local function get_require_path()
   local path = "httpssCssZssZsgithubsDscomsZskhoisZsbarsDswezterm"
   local path_trailing_slash = "httpssCssZssZsgithubsDscomsZskhoisZsbarsDsweztermsZs"
@@ -37,7 +41,9 @@ local spotify = require "bar.spotify"
 local paths = require "bar.paths"
 local cpu = require "bar.cpu"
 
--- conforming to https://github.com/wez/wezterm/commit/e4ae8a844d8feaa43e1de34c5cc8b4f07ce525dd
+---conforming to https://github.com/wez/wezterm/commit/e4ae8a844d8feaa43e1de34c5cc8b4f07ce525dd
+---@param c table: wezterm config object
+---@param opts bar.options
 M.apply_to_config = function(c, opts)
   -- make the opts arg optional
   if not opts then
@@ -102,7 +108,6 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   }
 end)
 
--- Name of workspace
 wez.on("update-status", function(window, pane)
   local present, conf = pcall(window.effective_config, window)
   if not present then
@@ -116,8 +121,10 @@ wez.on("update-status", function(window, pane)
     { Background = { Color = palette.tab_bar.background } },
   }
 
+  table.insert(left_cells, { Text = string.rep(" ", options.padding.left) })
+
   if options.modules.workspace.enabled then
-    local stat = " " .. options.modules.workspace.icon .. " " .. window:active_workspace() .. " "
+    local stat = options.modules.workspace.icon .. utilities._space(window:active_workspace(), options.separator.space)
     local stat_fg = palette.ansi[options.modules.workspace.color]
 
     if options.modules.leader.enabled and window:leader_is_active() then
@@ -135,7 +142,10 @@ wez.on("update-status", function(window, pane)
       goto set_left_status
     end
     table.insert(left_cells, { Foreground = { Color = palette.ansi[options.modules.pane.color] } })
-    table.insert(left_cells, { Text = options.modules.pane.icon .. " " .. utilities._basename(process) .. " " })
+    table.insert(
+      left_cells,
+      { Text = options.modules.pane.icon .. utilities._space(utilities._basename(process), options.separator.space) }
+    )
   end
 
   ::set_left_status::
@@ -210,12 +220,15 @@ wez.on("update-status", function(window, pane)
       table.insert(right_cells, { Foreground = { Color = palette.brights[1] } })
       table.insert(right_cells, {
         Text = utilities._space(options.separator.right_icon, options.separator.space, nil)
-          .. options.modules[name].icon
-          .. utilities._space(options.separator.field_icon, options.separator.space, nil),
+          .. options.modules[name].icon,
       })
+      table.insert(right_cells, { Text = utilities._space(options.separator.field_icon, options.separator.space, nil) })
     end
     ::continue::
   end
+  -- remove trailing separator
+  table.remove(right_cells, #right_cells)
+  table.insert(right_cells, { Text = string.rep(" ", options.padding.right) })
 
   window:set_right_status(wez.format(right_cells))
 end)
