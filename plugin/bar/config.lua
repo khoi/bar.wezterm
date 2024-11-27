@@ -37,7 +37,7 @@ M.options = {
       icon = wez.nerdfonts.fa_user,
       color = 8,
     },
-    hostname = {
+    ip = {
       enabled = true,
       icon = wez.nerdfonts.cod_server,
       color = 8,
