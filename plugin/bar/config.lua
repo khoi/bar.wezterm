@@ -64,6 +64,11 @@ M.options = {
       icon = wez.nerdfonts.md_chip,
       color = 5,
     },
+    memory = {
+      enabled = true,
+      icon = wez.nerdfonts.md_memory,
+      color = 3,
+    },
   },
 }
 
