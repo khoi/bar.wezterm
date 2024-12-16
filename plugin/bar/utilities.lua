@@ -14,7 +14,7 @@ H.is_windows = package.config:sub(1, 1) == "\\"
 ---@param throttle number
 ---@param last_update number
 ---@return boolean
-H._wait = function (throttle, last_update)
+H._wait = function(throttle, last_update)
   local current_time = os.time()
   return current_time - last_update < throttle
 end
@@ -27,7 +27,7 @@ H._basename = function(s)
   if type(s) ~= "string" then
     return nil
   end
-  return s:gsub("(.*[/\\])(.*)%.(.*)", "%2")
+  return s:gsub("(.*/)(.*)", "%2")
 end
 
 ---add spaces to each side of a string
