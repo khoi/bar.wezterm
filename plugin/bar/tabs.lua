@@ -9,7 +9,7 @@ local M = {}
 ---@field active_pane table
 ---@field active_pane.title string
 
----get tab titletab_info 
+---get tab titletab_info
 ---@param tab_info tabs.tabinfo
 ---@return string
 M.get_title = function(tab_info)
@@ -20,6 +20,6 @@ M.get_title = function(tab_info)
   end
   -- Otherwise, use the title from the active pane
   -- in that tab
-  return utilities._basename(tab_info.active_pane.title)
+  return utilities._basename(tab_info.active_pane.foreground_process_name)
 end
 return M
